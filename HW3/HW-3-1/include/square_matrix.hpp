@@ -111,7 +111,6 @@ public:
         return result;
     }
 
-    //bool operator==(const SquareMatrix&, const SquareMatrix&) = default;
     bool operator==(const SquareMatrix& other) const = default;
 
 private:

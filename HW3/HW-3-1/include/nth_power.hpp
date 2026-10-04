@@ -49,7 +49,7 @@ template <Integer Base, Integer Exp>
 constexpr Base nth_power(Base base, Exp exp) {
     if (std::signed_integral<Exp>) {
         if (exp < 0) {
-            throw std::domain_error("nth_power negative exp");
+            throw std::domain_error("nth_power negative exp, use non int type");
         }    
     }
 
@@ -69,10 +69,8 @@ template <Real Base, Integer Exp>
 constexpr std::complex<Base> nth_power(std::complex<Base> base, Exp exp) {
     using Complex = std::complex<Base>;
     if (exp < 0) {
-        //return Complex{Base{1}} / nth_power(std::move(base), Complex{Base{1}}, static_cast<unsigned long long>(std::abs(exp)));
         return Complex{Base{1}} / nth_power(base, Complex{Base{1}}, static_cast<unsigned long long>(std::abs(exp)));
     } else {
-        //return nth_power(std::move(base), Complex{Base{1}}, static_cast<unsigned long long>(exp));
         return nth_power(base, Complex{Base{1}}, static_cast<unsigned long long>(exp));
     }
 }
@@ -88,13 +86,6 @@ M nth_power(M base, Exp exp) {
         }        
     } else {
         const unsigned long long n = static_cast<unsigned long long>(exp);
-        // if (n == 0) {
-        //     return M::identity();
-        // }
-
-        // if (n == 1) {
-        //     return base;
-        // }
 
         return nth_power(base, M::identity(), n);
     }
