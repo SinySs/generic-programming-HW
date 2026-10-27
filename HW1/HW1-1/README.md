@@ -1,7 +1,5 @@
 # HW1.1. `volatile std::nullptr_t`
 
-Код со слайда
-
 ```cpp
 #include <cstddef>
 
